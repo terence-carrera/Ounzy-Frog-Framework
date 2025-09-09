@@ -1,0 +1,34 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Ounzy\FrogFramework\Console\Application;
+
+// Handle global color flags before running application
+$filtered = [];
+$forceColor = false;
+$forceNoColor = false;
+foreach ($argv as $i => $a) {
+    if ($i === 0) {
+        $filtered[] = $a;
+        continue;
+    }
+    if ($a === '--no-color') {
+        $forceNoColor = true;
+        continue;
+    }
+    if ($a === '--color') {
+        $forceColor = true;
+        continue;
+    }
+    $filtered[] = $a;
+}
+if ($forceColor) {
+    \Ounzy\FrogFramework\Console\Command::enableColors(true);
+} elseif ($forceNoColor) {
+    \Ounzy\FrogFramework\Console\Command::enableColors(false);
+}
+
+$app = new Application();
+exit($app->run($filtered));

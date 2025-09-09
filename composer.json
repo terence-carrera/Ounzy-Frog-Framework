@@ -1,0 +1,39 @@
+{
+    "name": "ounzy/frog-framework",
+    "description": "Simple PHP Framework",
+    "type": "project",
+    "require": {
+        "php": "8.3.23"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ounzy\\FrogFramework\\": "src/"
+        },
+        "files": [
+            "src/Support/helpers.php",
+            "src/Support/debug.php",
+            "src/Support/errors.php"
+        ]
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t public public/index.php",
+        "dump": "composer dump-autoload -o",
+        "dev:css": "npx tailwindcss -i ./resources/css/app.css -o ./public/assets/app.css --watch",
+        "build:css": "npx tailwindcss -i ./resources/css/app.css -o ./public/assets/app.css --minify"
+    },
+    "bin": [
+        "frog"
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "Ounzy\\FrogFramework\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Terence Carrera",
+            "email": "wizzard.terence@outlook.com"
+        }
+    ]
+}
