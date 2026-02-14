@@ -49,6 +49,10 @@ if (!function_exists('frog_register_error_handlers')) {
                 return;
             }
 
+            while (ob_get_level() > 0) {
+                ob_end_clean();
+            }
+
             $accept = $_SERVER['HTTP_ACCEPT'] ?? '';
             if (str_contains($accept, 'application/json')) {
                 echo response()->status(500)->json(['error' => 'Server Error'])->getContent();

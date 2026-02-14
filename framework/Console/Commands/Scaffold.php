@@ -49,7 +49,7 @@ class Scaffold extends Command
     {
         public function example(): string
         {
-        return '{$studly} service working';
+            return '{$studly} service working';
         }
     }
     PHP;
@@ -74,7 +74,7 @@ class Scaffold extends Command
     <h1>{$studly} View</h1>
     <p>Generated scaffold.</p>
     <p>Service example output: <?= htmlspecialchars(
-        app()->container()->make(Frog\\App\\Services\\\$service::class)->example(), ENT_QUOTES, 'UTF-8'
+        app()->container()->make(Frog\\App\\Services\\{$service}::class)->example(), ENT_QUOTES, 'UTF-8'
     ) ?></p>
     HTML;
         if (!file_exists($viewPath)) {
@@ -109,9 +109,9 @@ class Scaffold extends Command
 
         public function index(Request \$request): Response
         {
-        return response()->html(view('{$view}', [
-            'service' => \$this->service->example(),
-        ]));
+            return response()->html(view('{$view}', [
+                'service' => \$this->service->example(),
+            ]));
         }
     }
     PHP;

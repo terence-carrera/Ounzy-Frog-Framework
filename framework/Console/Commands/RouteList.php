@@ -11,7 +11,11 @@ class RouteList extends Command
 
     public function handle(array $arguments = []): int
     {
-        $router = require __DIR__ . '/../../../bootstrap/routes.php';
+        $root = dirname(__DIR__, 3);
+        $app = new \Frog\Infrastructure\App();
+        require $root . '/bootstrap/app.php';
+        require $root . '/bootstrap/routes.php';
+        $router = $app->router();
         $routes = $router->getRoutes();
         $this->line(str_pad('METHOD', 8) . str_pad('URI', 30) . 'HANDLER');
         $this->line(str_repeat('-', 70));

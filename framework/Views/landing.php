@@ -1,5 +1,4 @@
-<?php // Default landing page view for Frog Framework using landing layout 
-?>
+<?php // Default landing page view for Frog Framework using landing layout ?>
 @extends('Layout.landing')
 
 @section('hero')

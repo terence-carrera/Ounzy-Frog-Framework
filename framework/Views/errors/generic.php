@@ -63,7 +63,7 @@
         <h2><?= htmlspecialchars($message ?? 'An error occurred.') ?></h2>
         <p><?= htmlspecialchars($description ?? 'Please try again later.') ?></p>
         <p><a href="/">Return Home</a></p>
-        <footer>Frog Framework</footer>
+        <footer>Copyright &copy; <?= date('Y') ?> Frog Framework</footer>
     </div>
 </body>
 

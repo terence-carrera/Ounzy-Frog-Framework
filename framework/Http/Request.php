@@ -41,13 +41,13 @@ class Request
         return rtrim($uri, '/') ?: '/';
     }
 
-    public function query(string $key = null, $default = null)
+    public function query(?string $key = null, mixed $default = null): mixed
     {
         if ($key === null) return $this->get;
         return $this->get[$key] ?? $default;
     }
 
-    public function input(string $key = null, $default = null)
+    public function input(?string $key = null, mixed $default = null): mixed
     {
         if ($key === null) return $this->post;
         return $this->post[$key] ?? $default;

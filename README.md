@@ -48,15 +48,15 @@ frog                  CLI launcher (commands)
 
 ## Core Helpers
 
-| Helper                 | Purpose                                   |
-|------------------------|-------------------------------------------|
-| `response()`           | Build an HTTP response (html/json/status) |
-| `view(name)`           | Render a view file                        |
-| `layout_view()`        | Shortcut to render with a layout          |
-| `route(name, [params])`| URL for a named route                     |
-| `asset('images/logo.png')` | Public asset URL (with optional base)  |
-| `config('key')`        | Read config (if bound)                    |
-| `app()` / `container()`| Access application / DI container         |
+| Helper                     | Purpose                                   |
+| -------------------------- | ----------------------------------------- |
+| `response()`               | Build an HTTP response (html/json/status) |
+| `view(name)`               | Render a view file                        |
+| `layout_view()`            | Shortcut to render with a layout          |
+| `route(name, [params])`    | URL for a named route                     |
+| `asset('images/logo.png')` | Public asset URL (with optional base)     |
+| `config('key')`            | Read config (if bound)                    |
+| `app()` / `container()`    | Access application / DI container         |
 
 ## Views & Layouts
 
@@ -114,14 +114,15 @@ List: `php frog list`
 
 | Command               | Description                           |
 |-----------------------|---------------------------------------|
-| `hop`                 | Dev server                            |
+| `hop`                 | Dev server (use --host/--port)        |
 | `route:list`          | Show registered routes                |
-| `make:controller`     | Generate controller stub              |
+| `make:controller`     | Generate controller stub (--resource) |
 | `make:scaffold Name`  | Controller + service + view + route   |
 | `make:api-token`      | Generate & hash API token (.env)      |
-| `assets:link`         | Symlink resources/* into public/*     |
-| `assets:unlink`       | Remove those links                    |
+| `assets:link`         | Symlink `resources/*` into `public/*` |
+| `assets:unlink`       | Remove those links (--force/--all)    |
 | `test`                | Run lightweight tests                 |
+| `db:check`            | Check database connection health      |
 
 ## Assets
 

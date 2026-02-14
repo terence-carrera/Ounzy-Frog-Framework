@@ -10,6 +10,9 @@ use Frog\Http\Request;
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// Avoid partial output when errors occur
+ob_start();
+
 frog_register_error_handlers();
 
 // Static file passthrough for PHP built-in server when using this router script.
@@ -50,6 +53,9 @@ $router->middleware([
 try {
     $response = $router->dispatch(Request::capture());
 } catch (Throwable $e) {
+    while (ob_get_level() > 0) {
+        ob_end_clean();
+    }
     if (config('app.debug', false)) {
         $response = response()->status(500)->html(frog_debug_render($e));
     } else {
@@ -57,6 +63,10 @@ try {
     }
 }
 
+$bufferLevel = ob_get_level();
+while ($bufferLevel-- > 0) {
+    ob_end_clean();
+}
 $response->send();
 
 

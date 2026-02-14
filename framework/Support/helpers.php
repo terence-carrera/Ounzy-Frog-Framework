@@ -2,8 +2,11 @@
 
 use Frog\Http\Response;
 use Frog\Infrastructure\App;
-use Frog\Infrastructure\Container;
+use Frog\Infrastructure\Cache\CacheManager;
 use Frog\Infrastructure\Config;
+use Frog\Infrastructure\Container;
+use Frog\Infrastructure\Database\DatabaseManager;
+use Frog\Infrastructure\Mail\MailManager;
 
 if (!function_exists('response')) {
     function response(): Response
@@ -216,7 +219,7 @@ if (!function_exists('env')) {
 }
 
 if (!function_exists('config')) {
-    function config(string $key = null, mixed $default = null): mixed
+    function config(?string $key = null, mixed $default = null): mixed
     {
         /** @var Config $cfg */
         $cfg = container()->has(Config::class) ? container()->make(Config::class) : null;
@@ -230,6 +233,27 @@ if (!function_exists('route')) {
     function route(string $name, array $params = []): string
     {
         return app()->router()->url($name, $params);
+    }
+}
+
+if (!function_exists('db')) {
+    function db(?string $connection = null)
+    {
+        return container()->make(DatabaseManager::class)->connection($connection);
+    }
+}
+
+if (!function_exists('cache')) {
+    function cache(?string $store = null)
+    {
+        return container()->make(CacheManager::class)->store($store);
+    }
+}
+
+if (!function_exists('mailer')) {
+    function mailer(): MailManager
+    {
+        return container()->make(MailManager::class);
     }
 }
 

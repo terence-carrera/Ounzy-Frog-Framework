@@ -11,6 +11,7 @@ use Frog\Console\Commands\Scaffold;
 use Frog\Console\Commands\MakeApiToken;
 use Frog\Console\Commands\AssetsLink;
 use Frog\Console\Commands\AssetsUnlink;
+use Frog\Console\Commands\DbCheck;
 
 class Application
 {
@@ -28,6 +29,7 @@ class Application
         $this->register(new MakeApiToken());
         $this->register(new AssetsLink());
         $this->register(new AssetsUnlink());
+        $this->register(new DbCheck());
     }
 
     public function register(Command $command): void

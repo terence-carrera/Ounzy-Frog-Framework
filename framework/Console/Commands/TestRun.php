@@ -23,7 +23,12 @@ class TestRun extends Command
         foreach ($files as $file) {
             require_once $file;
             $class = basename($file, '.php');
-            if (!class_exists($class)) continue;
+            $fqcn = 'Frog\\Tests\\' . $class;
+            if (class_exists($fqcn)) {
+                $class = $fqcn;
+            } elseif (!class_exists($class)) {
+                continue;
+            }
             $total++;
             try {
                 $test = new $class();
