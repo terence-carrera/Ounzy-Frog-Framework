@@ -312,3 +312,5 @@ if (!function_exists('csrf_field')) {
         return '<input type="hidden" name="' . htmlspecialchars($field, ENT_QUOTES, 'UTF-8') . '" value="' . $token . '">';
     }
 }
+
+

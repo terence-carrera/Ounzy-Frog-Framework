@@ -18,7 +18,7 @@ if (!function_exists('frog_error_view')) {
 }
 
 if (!function_exists('frog_error_response')) {
-    function frog_error_response(int $code, array $data = []): \Ounzy\FrogFramework\Http\Response
+    function frog_error_response(int $code, array $data = []): \Frog\Http\Response
     {
         return response()->status($code)->html(frog_error_view($code, $data));
     }

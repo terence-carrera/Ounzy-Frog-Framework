@@ -1,6 +1,6 @@
 <?php
 
-namespace Ounzy\FrogFramework\Tests;
+namespace Frog\Tests;
 
 abstract class TestCase
 {
@@ -23,3 +23,4 @@ abstract class TestCase
         return $this->assertions;
     }
 }
+

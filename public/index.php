@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
-use Ounzy\FrogFramework\Core\App;
-use Ounzy\FrogFramework\Http\Middleware\AccessLogMiddleware;
-use Ounzy\FrogFramework\Http\Request;
+use Frog\Infrastructure\App;
+use Frog\Http\Middleware\AccessLogMiddleware;
+use Frog\Http\Middleware\CsrfMiddleware;
+use Frog\Http\Middleware\SessionMiddleware;
+use Frog\Http\Request;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+frog_register_error_handlers();
 
 // Static file passthrough for PHP built-in server when using this router script.
 // If the requested URI maps to an actual file under public/, return false so the
@@ -37,6 +41,8 @@ require __DIR__ . '/../bootstrap/routes.php';
 $router = $app->router();
 
 $router->middleware([
+    SessionMiddleware::class,
+    CsrfMiddleware::class,
     AccessLogMiddleware::class,
 ]);
 
@@ -52,3 +58,5 @@ try {
 }
 
 $response->send();
+
+
