@@ -1,8 +1,8 @@
 <?php
 
-namespace Ounzy\FrogFramework\Tests;
+namespace Frog\Tests;
 
-use Ounzy\FrogFramework\Core\Container;
+use Frog\Infrastructure\Container;
 use stdClass;
 
 class ContainerTest extends TestCase
@@ -15,3 +15,5 @@ class ContainerTest extends TestCase
         $this->assertTrue($obj instanceof stdClass, 'Should resolve stdClass');
     }
 }
+
+

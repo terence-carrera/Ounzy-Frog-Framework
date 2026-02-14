@@ -1,6 +1,9 @@
 <?php
 
-use Ounzy\FrogFramework\Routing\Router;
-use Ounzy\FrogFramework\Routing\Route;
+use Frog\Infrastructure\Routing\Router;
+use Frog\Infrastructure\Routing\Route;
 
-Route::get('/', [\Ounzy\FrogFramework\Controllers\IndexController::class, 'index'])->name('index');
+Route::get('/', [\Frog\App\Controllers\IndexController::class, 'index'])->name('index');
+Route::get('/docs', fn() => response()->html(view('docs.base')))->name('docs');
+
+

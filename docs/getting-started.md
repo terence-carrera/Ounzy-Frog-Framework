@@ -28,15 +28,14 @@ composer install
 
 ```text
 public/            # Front controller (index.php)
-src/
-  Core/           # App & Container
-  Routing/        # Router
+framework/
+  App/            # Controllers + services
+  Console/        # CLI commands
   Http/           # Request/Response & Middleware
-  Controllers/    # Controllers
-  Services/       # Reusable services
+  Infrastructure/ # App core, container, routing, config
   Views/          # PHP templates
   Support/        # Helpers
-  Exceptions/     # Custom exceptions
+  Infrastructure/Exceptions/ # Custom exceptions
 bootstrap/        # Routes, future boot files
 vendor/           # Composer dependencies
 frog              # CLI console
@@ -86,7 +85,7 @@ $router->get('/about', [AboutController::class, 'index']);
 
 ## 7. Views
 
-Create `src/Views/about.php`:
+Create `framework/Views/about.php`:
 
 ```php
 <h1>About Frog</h1>
@@ -104,7 +103,7 @@ return response()->html(view('about'));
 Bind services in `bootstrap/routes.php`:
 
 ```php
-app()->container()->singleton(App\Services\UserRepo::class, App\Services\UserRepo::class);
+app()->container()->singleton(Frog\App\Services\UserRepo::class, Frog\App\Services\UserRepo::class);
 ```
 
 Inject into controllers via constructor type-hints.
@@ -150,7 +149,7 @@ Generate controller:
 php frog make:controller Admin/User --resource
 ```
 
-Custom command skeleton: create class under `src/Console/Commands` extending `Command`, then register in `Console\Application`.
+Custom command skeleton: create class under `framework/Console/Commands` extending `Command`, then register in `Console\Application`.
 
 ## 11. Returning Responses
 
@@ -170,7 +169,7 @@ Methods available on `Response`:
 
 ## 13. Adding Services
 
-Create `src/Services/GreetingService.php` and bind it:
+Create `framework/App/Services/GreetingService.php` and bind it:
 
 ```php
 app()->container()->singleton(GreetingService::class, GreetingService::class);

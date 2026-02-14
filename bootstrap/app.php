@@ -1,8 +1,8 @@
 <?php
 
-use Ounzy\FrogFramework\Core\Env;
-use Ounzy\FrogFramework\Core\Config;
-use Ounzy\FrogFramework\Core\App;
+use Frog\Infrastructure\Env;
+use Frog\Infrastructure\Config;
+use Frog\Infrastructure\App;
 
 // Load environment variables
 if (!file_exists(__DIR__ . '/../.env')) {
@@ -21,3 +21,5 @@ foreach (glob(__DIR__ . '/../config/*.php') as $file) {
 // Bind config to container
 app()->container()->instance(Config::class, $config);
 app()->container()->instance('config', $config);
+
+

@@ -7,9 +7,9 @@ Middleware are classes that sit in the request pipeline allowing you to transfor
 ## Creating Middleware
 
 ```php
-use Ounzy\FrogFramework\Http\Middleware\MiddlewareInterface;
-use Ounzy\FrogFramework\Http\Request;
-use Ounzy\FrogFramework\Http\Response;
+use Frog\Http\Middleware\MiddlewareInterface;
+use Frog\Http\Request;
+use Frog\Http\Response;
 
 class LogMiddleware implements MiddlewareInterface {
   public function handle(Request $r, callable $next): Response {
@@ -48,3 +48,4 @@ Return a `Response` before calling `$next($r)` to stop the chain.
 - Keep middleware small & focused.
 - Compose multiple instead of creating monoliths.
 - Use constructor DI for services (logger, cache, etc.).
+

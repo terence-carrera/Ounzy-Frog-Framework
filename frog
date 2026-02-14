@@ -3,7 +3,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use Ounzy\FrogFramework\Console\Application;
+use Frog\Console\Application;
 
 // Handle global color flags before running application
 $filtered = [];
@@ -25,9 +25,9 @@ foreach ($argv as $i => $a) {
     $filtered[] = $a;
 }
 if ($forceColor) {
-    \Ounzy\FrogFramework\Console\Command::enableColors(true);
+    \Frog\Console\Command::enableColors(true);
 } elseif ($forceNoColor) {
-    \Ounzy\FrogFramework\Console\Command::enableColors(false);
+    \Frog\Console\Command::enableColors(false);
 }
 
 $app = new Application();

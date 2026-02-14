@@ -1,10 +1,10 @@
 <?php
 
-namespace Ounzy\FrogFramework\Tests;
+namespace Frog\Tests;
 
-use Ounzy\FrogFramework\Routing\Router;
-use Ounzy\FrogFramework\Http\Request;
-use Ounzy\FrogFramework\Core\App;
+use Frog\Infrastructure\Routing\Router;
+use Frog\Http\Request;
+use Frog\Infrastructure\App;
 
 class RouterTest extends TestCase
 {
@@ -22,8 +22,10 @@ class RouterTest extends TestCase
         $_POST = [];
         $_COOKIE = [];
         $_FILES = [];
-        $request = new \Ounzy\FrogFramework\Http\Request($_GET, $_POST, $_SERVER, $_COOKIE, $_FILES, []);
+        $request = new \Frog\Http\Request($_GET, $_POST, $_SERVER, $_COOKIE, $_FILES, []);
         $response = $router->dispatch($request);
         $this->assertEquals('Frog', $response->getContent(), 'Route should output parameter');
     }
 }
+
+

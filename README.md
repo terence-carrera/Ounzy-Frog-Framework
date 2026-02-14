@@ -36,10 +36,13 @@ Route::get('/about', fn() => response()->html(view('about.base'))); // auto-uses
 ```text
 public/              Front controller & public assets
 bootstrap/routes.php  Define routes (Route::get/post)
-src/Controllers/      Your controllers
-src/Views/            Views (hello.base.php -> uses Layout/base)
-src/Views/Layout/     Layouts (base.php, auth.php...)
-src/Support/          Helpers (view(), asset(), route(), config(), ...)
+framework/App/Controllers/  Your controllers
+framework/App/Services/     App services
+framework/Http/             Request/Response + middleware
+framework/Infrastructure/   App core + routing + config
+framework/Views/            Views (hello.base.php -> uses Layout/base)
+framework/Views/Layout/     Layouts (base.php, auth.php...)
+framework/Support/          Helpers (view(), asset(), route(), config(), ...)
 frog                  CLI launcher (commands)
 ```
 
@@ -69,9 +72,10 @@ Directives (mini Blade‑like):
 @yield('body','default')
 @include('partials/nav')
 ```
+
 Sections collected in the view become `@yield()` spots inside the layout.
 
-Example layout: `src/Views/Layout/base.php`
+Example layout: `framework/Views/Layout/base.php`
 
 ```php
 <!doctype html><html><head><title><?= htmlspecialchars($title??'Frog') ?></title></head>
@@ -80,7 +84,7 @@ Example layout: `src/Views/Layout/base.php`
 </body></html>
 ```
 
-Example view: `src/Views/home.base.php`
+Example view: `framework/Views/home.base.php`
 
 ```php
 @section('body')
@@ -139,6 +143,7 @@ Fails gracefully with custom 401/404/500 pages. In debug mode (set `APP_DEBUG=1`
 Request -> Router -> (Middleware) -> Controller/Closure -> Response -> Sent
                                \-> view() -> layout -> HTML
 ```
+
 Everything is plain PHP arrays / objects—no magic global state beyond the single App instance.
 
 ## One-Sitting Learning Path
@@ -151,19 +156,9 @@ Everything is plain PHP arrays / objects—no magic global state beyond the sing
 
 Done. You now know 90%.
 
-## Tailwind (Optional)
-
-Build CSS (already configured):
-
-```bash
-composer run dev:css    # watch
-composer run build:css  # production
-```
-Include: `<link rel="stylesheet" href="/assets/app.css">`
-
 ## Advanced (Optional / Skip at First)
 
-Middleware, more robust logging, route groups, named routes, bearer token auth, section directives, and DI container internals are all readable in `src/` if you want to dive deeper later.
+Middleware, more robust logging, route groups, named routes, bearer token auth, section directives, and DI container internals are all readable in `framework/` if you want to dive deeper later.
 
 ## Cheat Sheet
 
@@ -172,4 +167,3 @@ See: `docs/cheatsheet.md` (generated for quick recall).
 ## License
 
 MIT
-
